@@ -26,7 +26,9 @@ create table tags(
 create table project_members(
     user_id INTEGER not Null references users(id) on delete CASCADE,
     project_id INTEGER not Null  references projects(id) on delete CASCADE,
-    role TEXT NOT NULL check (role in ('owner' , 'admin' , 'member' , 'viewer'))
+    role TEXT NOT NULL check (role in ('owner' , 'admin' , 'member' , 'viewer')),
+    PRIMARY KEY (user_id, project_id)
+
 );
 -- --carete task table 
 create table tasks(
@@ -44,7 +46,9 @@ create table tasks(
 -- --craete task-tag table 
 create table task_tags(
     task_id integer references tasks(id) on delete CASCADE,
-    tag_id integer references tags(id) on delete CASCADE   
+    tag_id integer references tags(id) on delete CASCADE,
+    --composit keys
+    PRIMARY KEY (task_id, tag_id)    
 );
 
 -- carete comments table
