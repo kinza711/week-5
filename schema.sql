@@ -3,9 +3,12 @@
 create table users (
 id INTEGER generated always as identity primary KEY,
 name text not NULL,
-email text not null unique,
+email text not null,
 created_at timestamptz default now()
 );
+-- unique key with ignore case-sens
+create unique index users_email_lower_unique on users (lower(email));
+
 
 -- create projects table
 
