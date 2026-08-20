@@ -31,3 +31,13 @@ VALUES
 
     (3, 3, 'owner'),
     (6, 3, 'viewer');
+
+    -- tags seeds 
+    INSERT INTO tags (name)
+VALUES
+    ('frontend'),
+    ('backend'),
+    ('bug'),
+    ('urgent'),
+    ('feature'),
+    ('documentation');
