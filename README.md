@@ -20,6 +20,8 @@ This assignment focuses on designing a relational database using PostgreSQL with
 - ON DELETE behavior
 - Many-to-many relationships
 - Reproducible schema and seed scripts
+- ignores upper and lower case in email
+- use enum types 
 
 The database is designed so that important business rules are enforced at the database level rather than relying only on application code.
 
