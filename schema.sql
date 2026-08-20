@@ -30,12 +30,17 @@ create table project_members(
     PRIMARY KEY (user_id, project_id)
 
 );
+
+--create enum for status challenge task
+create type task_status as enum (
+    'todo' , 'in_progress' , 'done'
+);
 -- --carete task table 
 create table tasks(
     id INTEGER generated always as identity primary key,
     title text NOT NULL,
     description text ,
-    status text check (status in ('todo' , 'in_progress' , 'done')),
+    status task_status Not null,
     priority integer check (priority between 1 and 5) ,
     project_id INTEGER NOT NULL references projects(id) on delete CASCADE,
     assignee_id integer NULL references users(id) ON DELETE SET NULL,
