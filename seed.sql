@@ -334,3 +334,27 @@ VALUES
     (15, 2),
     (15, 3);
 
+-- commits seeds data
+INSERT INTO comments (
+    task_id,
+    author_id,
+    body
+)
+VALUES
+    (1, 2, 'Homepage looks good.'),
+    (1, 1, 'Approved for production.'),
+
+    (2, 3, 'Navbar issue reproduced.'),
+
+    (3, 1, 'Authentication work is in progress.'),
+
+    (6, 2, 'This bug needs urgent attention.'),
+    (6, 3, 'I found the source of the problem.'),
+
+    (7, 4, 'Testing guide needs more examples.'),
+
+    (10, 4, 'Mobile layout is ready.'),
+
+    (12, 2, 'Profile screen needs another review.'),
+
+    (13, 1, 'Mobile crash has been fixed.');
