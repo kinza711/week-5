@@ -14,8 +14,17 @@
 
 -- i use left join not inner bcz i want Every user, including users with 0 tasks, must appear.
 
-SELECT u.name, COUNT(t.id)
-FROM users AS u
-LEFT JOIN tasks AS t
-ON u.id = t.assignee_id
-GROUP BY u.id, u.name;
+-- SELECT u.name, COUNT(t.id)
+-- FROM users AS u
+-- LEFT JOIN tasks AS t
+-- ON u.id = t.assignee_id
+-- GROUP BY u.id, u.name;
+
+
+-- Q4 : part a => tasks that carry a given tag name, joined through task_tags .
+
+-- first join task to task_tag
+ select * FROM tasks AS t 
+ JOIN task_tags AS tt 
+ ON t.id = tt.task_id
+ 
