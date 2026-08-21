@@ -79,6 +79,5 @@
 SELECT t.id, t.title, COUNT(c.id) AS comment_count
 FROM tasks AS t
 LEFT JOIN comments AS c
-ON t.id = c.task_id
-GROUP BY t.id, t.title
+ON t.id = c.task_id GROUP BY t.id, t.title
 ORDER BY comment_count DESC;
