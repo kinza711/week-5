@@ -120,3 +120,27 @@ LEFT JOIN project_members AS pm
     ON p.id = pm.project_id
 GROUP BY p.id, p.name
 ORDER BY p.id;
+
+
+-- X1: Return the top 3 users by completed tasks,
+-- including all users tied at the third rank.
+
+WITH ranked_users AS (
+    SELECT
+        u.id,
+        u.name,
+        COUNT(t.id) AS done_count,
+        RANK() OVER (ORDER BY COUNT(t.id) DESC) AS rank
+    FROM users AS u
+    JOIN tasks AS t
+        ON u.id = t.assignee_id
+    WHERE t.status = 'done'
+    GROUP BY u.id, u.name
+)
+SELECT
+    id,
+    name,
+    done_count
+FROM ranked_users
+WHERE rank <= 3
+ORDER BY rank;
