@@ -6,7 +6,16 @@
 
 -- Q2: Count the number of tasks in each status.
 
-SELECT status, COUNT(*)
-FROM tasks
-GROUP BY status;
+-- SELECT status, COUNT(*)
+-- FROM tasks
+-- GROUP BY status;
+
+-- Q3: Dispaly No of tasks & users with 0 tasks must still appear.
+
+-- i use left join not inner bcz i want Every user, including users with 0 tasks, must appear.
+select * from users  as u
+left join tasks as t 
+on u.id = t.assignee_id;
+
+
 
