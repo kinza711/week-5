@@ -54,7 +54,7 @@
 
 
 -- Q7: SELECT *
-select * FROM projects AS p
+select  p.id, p.name  FROM projects AS p
 LEFT JOIN tasks AS t
 ON p.id = t.project_id
 where t.id is null
