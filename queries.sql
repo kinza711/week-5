@@ -101,3 +101,22 @@ ON p.id = pm.project_id
 LEFT JOIN users AS u
 ON pm.user_id = u.id
 ORDER BY p.id, u.id;
+
+
+-- challenge tasks
+
+-- X2: Return one row per project and count its members by role.
+-- Each supported role is represented as a separate column.
+
+SELECT
+    p.id,
+    p.name,
+    COUNT(*) FILTER (WHERE pm.role = 'owner') AS owners,
+    COUNT(*) FILTER (WHERE pm.role = 'admin') AS admins,
+    COUNT(*) FILTER (WHERE pm.role = 'member') AS members,
+    COUNT(*) FILTER (WHERE pm.role = 'viewer') AS viewers
+FROM projects AS p
+LEFT JOIN project_members AS pm
+    ON p.id = pm.project_id
+GROUP BY p.id, p.name
+ORDER BY p.id;
