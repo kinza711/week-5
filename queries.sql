@@ -24,8 +24,8 @@
 -- Q4 : part a => tasks that carry a given tag name, joined through task_tags .
 -- first join task to task_tag
 
- select * FROM tasks AS t JOIN task_tags AS tt ON t.id = tt.task_id
+ select t.id, t.title FROM tasks AS t JOIN task_tags AS tt ON t.id = tt.task_id
  -- now join task-tags with tags
  JOIN tags AS tg ON tt.tag_id = tg.id
- -- now finally filter task with tags name
+ -- now finally filter task with tags
   WHERE tg.name = 'frontend'
