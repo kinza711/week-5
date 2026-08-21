@@ -13,9 +13,9 @@
 -- Q3: Dispaly No of tasks & users with 0 tasks must still appear.
 
 -- i use left join not inner bcz i want Every user, including users with 0 tasks, must appear.
-select * from users  as u
-left join tasks as t 
-on u.id = t.assignee_id;
 
-
-
+SELECT u.name, COUNT(t.id)
+FROM users AS u
+LEFT JOIN tasks AS t
+ON u.id = t.assignee_id
+GROUP BY u.id, u.name;
