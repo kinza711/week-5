@@ -44,7 +44,9 @@
 
 
 -- Q6:  user with done top 3 asc
-SELECT * from tasks AS t 
+SELECT u.id, u.name, count(t.id) from tasks AS t 
 join  users as u
 on t.assignee_id= u.id
-where status = 'done'
+where t.status = 'done'
+group by u.id, u.name
+order by count(t.id) Desc limit 3
