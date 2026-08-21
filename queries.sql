@@ -76,8 +76,24 @@
 -- Q9: Count comments for every task, including tasks with zero comments,
 -- and order the results by comment count descending.
 
-SELECT t.id, t.title, COUNT(c.id) AS comment_count
-FROM tasks AS t
-LEFT JOIN comments AS c
-ON t.id = c.task_id GROUP BY t.id, t.title
-ORDER BY comment_count DESC;
+-- SELECT t.id, t.title, COUNT(c.id) AS comment_count
+-- FROM tasks AS t
+-- LEFT JOIN comments AS c
+-- ON t.id = c.task_id GROUP BY t.id, t.title
+-- ORDER BY comment_count DESC;
+
+
+-- Q10: List every project with its members and their assigned roles.
+
+SELECT
+    p.id AS project_id,
+    p.name AS project_name,
+    u.id AS user_id,
+    u.name AS member_name,
+    pm.role
+FROM projects AS p
+LEFT JOIN project_members AS pm
+ON p.id = pm.project_id
+LEFT JOIN users AS u
+ON pm.user_id = u.id
+ORDER BY p.id, u.id;
