@@ -31,13 +31,20 @@
 --   WHERE tg.name = 'frontend'
 
 
-  -- Q4 : part b =>
-SELECT  t.id, t.title, t.due_date, t.status, u.name FROM tasks as t
+  -- Q4 : part b => ooooovers duee tasks 
+-- SELECT  t.id, t.title, t.due_date, t.status, u.name FROM tasks as t
 
-JOIN users as u
-on t.assignee_id = u.id
+-- JOIN users as u
+-- on t.assignee_id = u.id
 
- -- condition 1
-where t.due_date < CURRENT_DATE
- -- condition 2
-and t.status <> 'done'
+--  -- condition 1
+-- where t.due_date < CURRENT_DATE
+--  -- condition 2
+-- and t.status <> 'done'
+
+
+-- Q6:  user with done top 3 asc
+SELECT * from tasks AS t 
+join  users as u
+on t.assignee_id= u.id
+where status = 'done'
