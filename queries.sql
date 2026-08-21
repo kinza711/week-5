@@ -24,8 +24,20 @@
 -- Q4 : part a => tasks that carry a given tag name, joined through task_tags .
 -- first join task to task_tag
 
- select t.id, t.title FROM tasks AS t JOIN task_tags AS tt ON t.id = tt.task_id
- -- now join task-tags with tags
- JOIN tags AS tg ON tt.tag_id = tg.id
- -- now finally filter task with tags
-  WHERE tg.name = 'frontend'
+--  select t.id, t.title FROM tasks AS t JOIN task_tags AS tt ON t.id = tt.task_id
+--  -- now join task-tags with tags
+--  JOIN tags AS tg ON tt.tag_id = tg.id
+--  -- now finally filter task with tags
+--   WHERE tg.name = 'frontend'
+
+
+  -- Q4 : part b =>
+SELECT  t.id, t.title, t.due_date, t.status, u.name FROM tasks as t
+
+JOIN users as u
+on t.assignee_id = u.id
+
+ -- condition 1
+where t.due_date < CURRENT_DATE
+ -- condition 2
+and t.status <> 'done'
