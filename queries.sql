@@ -54,7 +54,20 @@
 
 
 -- Q7: SELECT *
-select  p.id, p.name  FROM projects AS p
-LEFT JOIN tasks AS t
-ON p.id = t.project_id
-where t.id is null
+-- select  p.id, p.name  FROM projects AS p
+-- LEFT JOIN tasks AS t
+-- ON p.id = t.project_id
+-- where t.id is null
+
+
+-- Q8: Calculate the average number of tags assigned to each task,
+-- including tasks that have no tags.
+
+SELECT AVG(tag_count) AS avg_tags_per_task
+FROM (
+    SELECT t.id, COUNT(tt.tag_id) AS tag_count
+    FROM tasks AS t
+    LEFT JOIN task_tags AS tt
+    ON t.id = tt.task_id
+    GROUP BY t.id
+) AS task_tag_counts;
