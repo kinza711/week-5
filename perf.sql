@@ -13,3 +13,20 @@ ON tasks(status);
 
 create index if not exists idx_tasks_assignee_id
 on tasks(assignee_id);
+
+
+-- C1: Reassign tasks and remove project membership atomically
+BEGIN;
+
+-- Reassign all tasks from the leaving user to the new assignee.
+UPDATE tasks
+SET assignee_id = 2
+WHERE assignee_id = 1;
+
+-- Remove the leaving user's project membership.
+DELETE FROM project_members
+WHERE user_id = 1
+  AND project_id = 1;
+
+-- Commit both changes together.
+COMMIT;
