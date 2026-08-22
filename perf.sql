@@ -56,32 +56,37 @@
 
  -- C3: EXPLAIN ANALYZE before and after indexing
 
-    -- C3.1 BEFORE INDEX
-    EXPLAIN ANALYZE
-    SELECT *
-    FROM tasks
-    WHERE assignee_id = 2;
+    -- -- C3.1 BEFORE INDEX
+    -- EXPLAIN ANALYZE
+    -- SELECT *
+    -- FROM tasks
+    -- WHERE assignee_id = 2;
 
-    -- Create an index for the query above.
-    CREATE INDEX IF NOT EXISTS idx_tasks_assignee_id
-    ON tasks(assignee_id);
+    -- -- Create an index for the query above.
+    -- CREATE INDEX IF NOT EXISTS idx_tasks_assignee_id
+    -- ON tasks(assignee_id);
     
-    -- C3.2 AFTER INDEX
+    -- -- C3.2 AFTER INDEX
     
-    EXPLAIN ANALYZE
-    SELECT *
-    FROM tasks
-    WHERE assignee_id = 2;
+    -- EXPLAIN ANALYZE
+    -- SELECT *
+    -- FROM tasks
+    -- WHERE assignee_id = 2;
     
-    -- C3.3 BEFORE INDEX for status
+    -- -- C3.3 BEFORE INDEX for status
 
+    -- EXPLAIN ANALYZE
+    -- SELECT *
+    -- FROM tasks
+    -- WHERE status = 'done';
+
+    -- -- Create an index for status filtering.
+    -- CREATE INDEX IF NOT EXISTS idx_tasks_status
+    -- ON tasks(status);
+
+
+-- C3.4 AFTER INDEX for status
     EXPLAIN ANALYZE
     SELECT *
     FROM tasks
     WHERE status = 'done';
-
-    -- Create an index for status filtering.
-    CREATE INDEX IF NOT EXISTS idx_tasks_status
-    ON tasks(status);
-
-    
